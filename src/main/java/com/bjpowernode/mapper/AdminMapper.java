@@ -3,6 +3,7 @@ package com.bjpowernode.mapper;
 import com.bjpowernode.pojo.Admin;
 import com.bjpowernode.pojo.AdminExample;
 import org.apache.ibatis.annotations.Param;
+import org.mybatis.spring.annotation.MapperScan;
 
 import java.util.List;
 

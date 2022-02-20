@@ -73,7 +73,7 @@
 
                 <div id="top">
                     <input type="checkbox" id="all" onclick="allClick()" style="margin-left: 50px">&nbsp;&nbsp;全选
-                    <a href="${pageContext.request.contextPath}/admin/addproduct.jsp">
+                    <a href="${pageContext.request.contextPath}/admin/add uct.jsp">
 
                         <input type="button" class="btn btn-warning" id="btn1"
                                value="新增商品">
@@ -121,7 +121,7 @@
                             <nav aria-label="..." style="text-align:center;">
                                 <ul class="pagination">
                                     <li>
-                                            <%--                                        <a href="${pageContext.request.contextPath}/prod/split.action?page=${info.prePage}" aria-label="Previous">--%>
+                                            <%--<a href="${pageContext.request.contextPath}/prod/split.action?page=${info.prePage}" aria-label="Previous">--%>
                                         <a href="javascript:ajaxsplit(${info.prePage})" aria-label="Previous">
 
                                             <span aria-hidden="true">«</span></a>
@@ -129,7 +129,7 @@
                                     <c:forEach begin="1" end="${info.pages}" var="i">
                                         <c:if test="${info.pageNum==i}">
                                             <li>
-                                                    <%--                                                <a href="${pageContext.request.contextPath}/prod/split.action?page=${i}" style="background-color: grey">${i}</a>--%>
+                                                    <%--<a href="${pageContext.request.contextPath}/prod/split.action?page=${i}" style="background-color: grey">${i}</a>--%>
                                                 <a href="javascript:ajaxsplit(${i})"
                                                    style="background-color: grey">${i}</a>
                                             </li>
