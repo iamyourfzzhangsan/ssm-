@@ -15,7 +15,7 @@
 	</head>
     <script type="text/javascript">
         function fileChange(){//注意：此处不能使用jQuery中的change事件，因此仅触发一次，因此使用标签的：onchange属性
-           alert("change");
+           // alert("change");
             $.ajaxFileUpload({
                 url: '/prod/ajaxImg.action',//用于文件上传的服务器端请求地址
                 secureuri: false,//一般设置为false
@@ -23,7 +23,7 @@
                 dataType: 'json',//返回值类型 一般设置为json
                 success: function(obj) //服务器成功响应处理函数
                 {
-                	alert(obj);
+                	// alert(obj);
                     $("#imgDiv").empty();  //清空原有数据
                     //创建img 标签对象
                     var imgObj = $("<img>");
@@ -85,7 +85,7 @@
 						
 						<tr>
 							<td class="three">图片介绍</td>
-                            <td> <br><div id="imgDiv" style="display:block; width: 40px; height: 50px;"></div><br><br><br><br>
+                            <td> <br><div id="imgDiv" style="display:block; width: 55px; height: 50px;"></div><br><br><br><br>
 								<%--<input type="file" id="pimage" name="pimage" onchange="fileChange()">--%>
                             <input type="file" id="pimage" name="pimage" onchange="fileChange()" >
                                 <span id="imgName" ></span><br>
@@ -112,7 +112,7 @@
 							<td class="one">类别</td>
 							<td>
 								<select name="typeId">
-									<c:forEach items="${ptlist}" var="type">
+									<c:forEach items="${typeList}" var="type">
 										<option value="${type.typeId}">${type.typeName}</option>
 									</c:forEach>
 								</select>

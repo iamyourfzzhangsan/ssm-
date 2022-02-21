@@ -73,7 +73,7 @@
 
                 <div id="top">
                     <input type="checkbox" id="all" onclick="allClick()" style="margin-left: 50px">&nbsp;&nbsp;全选
-                    <a href="${pageContext.request.contextPath}/admin/add uct.jsp">
+                    <a href="${pageContext.request.contextPath}/admin/addproduct.jsp">
 
                         <input type="button" class="btn btn-warning" id="btn1"
                                value="新增商品">

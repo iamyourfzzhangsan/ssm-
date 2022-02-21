@@ -15,6 +15,12 @@ public class ProductInfoServiceImpl implements ProductInfoService {
 //    切记业务逻辑层中有一定的数据访问层的对象
     @Autowired
     ProductInfoMapper productInfoMapper;
+
+    @Override
+    public int save(ProductInfo info) {
+        return productInfoMapper.insert(info);
+    }
+
     @Override
     public List<ProductInfo> getAll() {
         return productInfoMapper.selectByExample(new ProductInfoExample());
