@@ -34,5 +34,5 @@ public interface ProductInfoMapper {
     public List<ProductInfo> selectConditionSplitPage(ProductVo vo);
 
     //批量删除
-    public int deleteBatch(String[] pids);
+     int deleteBatch(String[] pids);
 }

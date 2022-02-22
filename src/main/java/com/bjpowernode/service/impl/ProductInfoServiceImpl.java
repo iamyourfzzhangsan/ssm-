@@ -22,6 +22,28 @@ public class ProductInfoServiceImpl implements ProductInfoService {
     }
 
     @Override
+//    按主键查询商品ID
+    public ProductInfo getByID(int pid) {
+        return productInfoMapper.selectByPrimaryKey(pid);
+    }
+
+    @Override
+    public int update(ProductInfo info) {
+        return productInfoMapper.updateByPrimaryKey(info);
+    }
+//单个商品删除
+    @Override
+    public int delete(int pid) {
+        return productInfoMapper.deleteByPrimaryKey(pid);
+
+    }
+
+    @Override
+    public int deleteBeach(String[] ids) {
+        return productInfoMapper.deleteBatch(ids);
+    }
+
+    @Override
     public List<ProductInfo> getAll() {
         return productInfoMapper.selectByExample(new ProductInfoExample());
     }

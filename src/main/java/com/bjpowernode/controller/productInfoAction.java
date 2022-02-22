@@ -7,6 +7,7 @@ import com.github.pagehelper.PageInfo;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -87,7 +88,78 @@ public class productInfoAction {
         }else {
             request.setAttribute("msg","增加失败");
         }
+//        清空saveFileName
+        saveFileName = "";
 //        页面跳转
         return "forward:/prod/split.action";
+    }
+
+    @RequestMapping("/one")
+    public String one(int pid, Model model){
+        ProductInfo info = productInfoService.getByID(pid);
+        model.addAttribute("prod",info);
+        return "update";
+    }
+
+    @RequestMapping("/update")
+    public String update(ProductInfo info,HttpServletRequest request){
+
+        if (!saveFileName.equals("")){
+            info.setpImage(saveFileName);
+        }
+        int num = -1;
+        try {
+            num = productInfoService.update(info);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (num>0){
+            request.setAttribute("msg","更新成功");
+        }else {
+            request.setAttribute("msg","更新失败");
+        }
+        saveFileName="";
+        return "forward:/prod/split.action";
+    }
+
+    @RequestMapping("/delete")
+    public  String delete(int pid,HttpServletRequest request){
+        int num = -1;
+        try {
+            num = productInfoService.delete(pid);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (num>0){
+            request.setAttribute("msg","删除成功");
+        }else {
+            request.setAttribute("msg","删除失败");
+
+        }
+        return "forward:/prod/deleteAjaxSplit.action";
+    }
+    @ResponseBody
+    @RequestMapping(value = "/deleteAjaxSplit",produces = "text/html;charset=UTF-8")
+    public Object deleteAjaxSplit(HttpServletRequest request){
+        PageInfo info = productInfoService.splitPage(1,PAGE_SIZE);
+        request.getSession().setAttribute("info",info);
+        return request.getAttribute("msg");
+    }
+//    批量删除商品
+    @RequestMapping("/deleteBatch")
+    public String deleteBatch(String pids,HttpServletRequest request){
+//        将上传上来的字符串截开，形成商品ID的字符数组
+        String []ps = pids.split(",");
+        int num = productInfoService.deleteBeach(ps);
+        try {
+            if (num>0){
+                request.setAttribute("msg","批量删除");
+            }else {
+                request.setAttribute("msg","批量删除失败");
+            }
+        } catch (Exception e) {
+            request.setAttribute("msg","商品不可删除");
+        }
+        return "forward:/prod/deleteAjaxSplit.action";
     }
 }

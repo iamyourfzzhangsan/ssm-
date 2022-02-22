@@ -281,6 +281,8 @@
     </where>
     order by p_id desc
   </select>
+
+  <!--批量删除-->
   <delete id="deleteBatch" >
     delete from product_info where p_id in
     <foreach collection="array" item="pid" separator="," open="(" close=")">
