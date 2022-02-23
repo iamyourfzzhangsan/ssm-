@@ -200,8 +200,18 @@
                     });
 alert(str+"11111111");
                     //发送请求到服务器端
-                   // window.location="${pageContext.request.contextPath}/prod/deletebatch.action?str="+str;
+                    <%--window.location="${pageContext.request.contextPath}/prod/deletebatch.action?str="+str;--%>
 
+                    $.ajax({
+                        url:"${pageContext.request.contextPath}/prod/deleteBatch.action",
+                        data:{"pids":str},
+                        type:"post",
+                        dataType:"text",
+                        success:function (msg) {
+                            alert(msg);
+                            $("#table").load("http://localhost:8080/admin/product.jsp #table");
+                        }
+                    })
                 }
         }
     }
